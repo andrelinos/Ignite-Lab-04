@@ -64,9 +64,11 @@ export function App() {
           </Text>
         </label>
 
-        <Button.Solid type="submit" className="mt-4">
-          Entrar na plataforma
-        </Button.Solid>
+        <Button.Root>
+          <Button.Solid type="submit" className="mt-4">
+            Entrar na plataforma
+          </Button.Solid>
+        </Button.Root>
       </form>
 
       <footer className="flex flex-col items-center gap-4 mt-6">
