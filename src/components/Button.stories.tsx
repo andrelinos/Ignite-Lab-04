@@ -1,33 +1,20 @@
 import { Meta, StoryObj } from '@storybook/react';
-import {
-  Button,
-  ButtonRootProps,
-  ButtonSolidProps,
-  ButtonOutlineProps,
-} from './Button';
+import { Button, ButtonSolidProps, ButtonOutlineProps } from './Button';
 
 export default {
   title: 'Components/Button',
-  component: Button.Root,
+  component: Button.Solid,
   args: {
-    children: [
-      <Button.Root>
-        <Button.Solid>Create account</Button.Solid>
-      </Button.Root>,
-    ],
+    children: 'Create account',
   },
   argTypes: {},
-} as Meta<ButtonRootProps>;
+} as Meta<ButtonSolidProps>;
 
 export const Default: StoryObj<ButtonSolidProps> = {};
 
 export const ButtonOutline: StoryObj<ButtonOutlineProps> = {
   args: {
-    children: [
-      <Button.Root>
-        <Button.Outline>Create account</Button.Outline>
-      </Button.Root>,
-    ],
+    children: 'Create',
   },
   argTypes: {
     asChild: {

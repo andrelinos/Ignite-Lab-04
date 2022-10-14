@@ -14,12 +14,14 @@ module.exports = {
   },
   features: {
     storyStoreV7: true,
+    interactionsDebugger: true,
   },
-  async viteFinal(config, { configType }) {
+  staticDirs: ['../public'],
+  viteFinal(config, { configType }) {
     config.plugins.push(tsconfigPaths.default());
 
     if (configType === 'PRODUCTION') {
-      config.base = '/Ignite-Lab-04/';
+      config.base = '/ignite-lab-04/';
     }
 
     return config;

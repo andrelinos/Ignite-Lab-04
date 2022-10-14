@@ -7,8 +7,25 @@ import { TextInput } from '~/components/TextInput';
 import { Logo } from '~/assets/Logo';
 
 import '~/styles/global.css';
+import { FormEvent, useState } from 'react';
+import axios from 'axios';
 
 export function SignIn() {
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+
+  async function handleSignIn(event: FormEvent) {
+    event.preventDefault();
+
+    console.log('CLICOU!!!!!');
+
+    await axios.post('/sessions', {
+      email: 'andrelino@email.com',
+      password: '123456789',
+    });
+
+    setIsUserSignedIn(true);
+  }
+
   return (
     <div
       className="w-screen h-screen bg-gray-900 flex flex-col items-center justify-center
@@ -27,6 +44,7 @@ export function SignIn() {
       </header>
 
       <form className="flex flex-col gap-4 items-stretch w-full max-w-sm mt-8">
+        {isUserSignedIn && <Text>Login realizado!</Text>}
         <label htmlFor="email" className="flex flex-col gap-3">
           <Text className="font-semibold">Endereço de e-mail</Text>
           <TextInput.Root>
@@ -53,6 +71,8 @@ export function SignIn() {
               type="password"
               id="password"
               placeholder="******"
+              autoCapitalize="off"
+              autoComplete="off"
             />
           </TextInput.Root>
         </label>
@@ -64,11 +84,9 @@ export function SignIn() {
           </Text>
         </label>
 
-        <Button.Root>
-          <Button.Solid type="submit" className="mt-4">
-            Entrar na plataforma
-          </Button.Solid>
-        </Button.Root>
+        <Button.Solid type="submit" className="mt-4" onClick={handleSignIn}>
+          Entrar na plataforma
+        </Button.Solid>
       </form>
 
       <footer className="flex flex-col items-center gap-4 mt-6">

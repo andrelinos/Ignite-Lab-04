@@ -2,16 +2,6 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 
-export interface ButtonRootProps {
-  children: ReactNode;
-}
-
-function ButtonRoot({ children }: ButtonRootProps) {
-  return <div>{children}</div>;
-}
-
-ButtonRoot.displayName = 'Button.Root';
-
 export interface ButtonSolidProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -28,6 +18,7 @@ function ButtonSolid({
 
   return (
     <Comp
+      name="button-solid"
       className={clsx(
         `py-3 px-4 bg-cyan-500 rounded font-semibold text-black text-sm w-full
         transition-colors hover:bg-cyan-300 focus:ring-2 ring-white`,
@@ -58,6 +49,7 @@ function ButtonOutline({
 
   return (
     <Comp
+      name="button-outline"
       className={clsx(
         `py-3 px-4 bg-none rounded font-semibold text-cyan-500 text-sm w-full
         transition-colors ring-2 ring-cyan-500 hover:ring-cyan-300 focus:ring-white
@@ -74,7 +66,6 @@ function ButtonOutline({
 ButtonOutline.displayName = 'Button.Outline';
 
 export const Button = {
-  Root: ButtonRoot,
   Solid: ButtonSolid,
   Outline: ButtonOutline,
 };
