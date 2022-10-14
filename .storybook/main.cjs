@@ -1,3 +1,5 @@
+const tsconfigPaths = require('vite-tsconfig-paths');
+
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -13,7 +15,9 @@ module.exports = {
   features: {
     storyStoreV7: true,
   },
-  viteFinal: (config, { configType }) => {
+  async viteFinal(config, { configType }) {
+    config.plugins.push(tsconfigPaths.default());
+
     if (configType === 'PRODUCTION') {
       config.base = '/Ignite-Lab-04/';
     }
