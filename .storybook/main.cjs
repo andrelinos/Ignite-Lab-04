@@ -17,7 +17,7 @@ module.exports = {
     interactionsDebugger: true,
   },
   staticDirs: ['../public'],
-  viteFinal(config, { configType }) {
+  async viteFinal(config, { configType }) {
     config.plugins.push(tsconfigPaths.default());
 
     if (configType === 'PRODUCTION') {

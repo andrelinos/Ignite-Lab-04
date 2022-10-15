@@ -2,26 +2,34 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 
-export interface ButtonSolidProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
+  variant?: 'solid' | 'outline' | 'link';
+  children: ReactNode;
 }
 
-function ButtonSolid({
+export function Button({
   children,
   asChild,
   className,
+  variant = 'solid',
   ...props
-}: ButtonSolidProps) {
+}: ButtonProps) {
   const Comp = asChild ? Slot : 'button';
 
   return (
     <Comp
-      name="button-solid"
+      name="button"
       className={clsx(
-        `py-3 px-4 bg-cyan-500 rounded font-semibold text-black text-sm w-full
-        transition-colors hover:bg-cyan-300 focus:ring-2 ring-white`,
+        `py-3 px-4 font-semibold  text-sm w-full rounded
+        transition-colors `,
+        {
+          'bg-cyan-500 rounded text-black hover:bg-cyan-300 focus:ring-2 ring-white':
+            variant === 'solid',
+          'bg-none ring-2 ring-cyan-500 text-cyan-500 hover:text-black hover:bg-cyan-300 focus:ring-2 hover:ring-white':
+            variant === 'outline',
+          'rounded text-cyan-500 hover:text-cyan-300': variant === 'link',
+        },
         className,
       )}
       {...props}
@@ -30,42 +38,3 @@ function ButtonSolid({
     </Comp>
   );
 }
-
-ButtonSolid.displayName = 'Button.Solid';
-
-export interface ButtonOutlineProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
-  asChild?: boolean;
-}
-
-function ButtonOutline({
-  children,
-  asChild,
-  className,
-  ...props
-}: ButtonOutlineProps) {
-  const Comp = asChild ? Slot : 'button';
-
-  return (
-    <Comp
-      name="button-outline"
-      className={clsx(
-        `py-3 px-4 bg-none rounded font-semibold text-cyan-500 text-sm w-full
-        transition-colors ring-2 ring-cyan-500 hover:ring-cyan-300 focus:ring-white
-        focus:text-gray-900 focus:bg-cyan-500`,
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </Comp>
-  );
-}
-
-ButtonOutline.displayName = 'Button.Outline';
-
-export const Button = {
-  Solid: ButtonSolid,
-  Outline: ButtonOutline,
-};
