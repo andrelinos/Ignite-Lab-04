@@ -10,15 +10,17 @@ import '~/styles/global.css';
 import { FormEvent, useState } from 'react';
 import axios from 'axios';
 
+const api = axios.create({
+  timeout: 30000,
+});
+
 export function SignIn() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
   async function handleSignIn(event: FormEvent) {
     event.preventDefault();
 
-    console.log('CLICOU!!!!!');
-
-    await axios.post('/sessions', {
+    await api.post('/sessions', {
       email: 'andrelino@email.com',
       password: '123456789',
     });
