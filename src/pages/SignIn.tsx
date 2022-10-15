@@ -86,9 +86,9 @@ export function SignIn() {
           </Text>
         </label>
 
-        <Button.Solid type="submit" className="mt-4" onClick={handleSignIn}>
+        <Button type="submit" className="mt-4" onClick={handleSignIn}>
           Entrar na plataforma
-        </Button.Solid>
+        </Button>
       </form>
 
       <footer className="flex flex-col items-center gap-4 mt-6">
