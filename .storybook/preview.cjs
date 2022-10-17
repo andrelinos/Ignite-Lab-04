@@ -5,6 +5,11 @@ import '../src/styles/global.css';
 
 initialize({
   onUnhandledRequest: 'bypass',
+  serviceWorker: {
+    url: isDevelopment
+      ? 'mockServiceWorker.js'
+      : '/ignite-lab-04/mockServiceWorker.js',
+  },
 });
 
 export const decorators = [mswDecorator];
